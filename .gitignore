@@ -1,0 +1,17 @@
+build
+bin
+gen
+out
+gradle
+gradlew
+gradlew.bat
+local.properties
+*.iml
+*.apk
+*.DS_Store
+.idea/
+.gradle/
+.project
+.settings
+.classpath
+captures
