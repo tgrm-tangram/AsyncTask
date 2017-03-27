@@ -37,7 +37,7 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void test1() {
-        SingleObserver<String> observer = new SingleObserver<String>() {
+        SingleObserver<String> single = new SingleObserver<String>() {
             @Override
             public void onError(Throwable e) {
 
@@ -56,7 +56,7 @@ public class ExampleInstrumentedTest {
             }
         };
 
-        observable.subscribe(observer);
+        observable.subscribe(single);
 
         observable.publish();
     }
@@ -64,14 +64,14 @@ public class ExampleInstrumentedTest {
     @Test
     public void test2() {
 
-        ExecutorObservable observable = new ExecutorObservable() {
+        ExecutorObservable executor = new ExecutorObservable() {
             @Override
             public void call(@NonNull ExecutorObserver observer) throws Throwable {
                 observer.onComplete();
             }
         };
 
-        observable.subscribe(new ExecutorObserver() {
+        executor.subscribe(new ExecutorObserver() {
             @Override
             public void onComplete() {
                 Log.d("wlx||test", "onComplete-" + " " + Thread.currentThread().getName());
@@ -83,13 +83,13 @@ public class ExampleInstrumentedTest {
             }
         });
 
-        observable.publish();
+        executor.publish();
 
     }
 
     @Test
     public void test3() {
-        TaskObservable<Result> observable = new TaskObservable<Result>() {
+        TaskObservable<Result> task = new TaskObservable<Result>() {
             @Override
             public void call(@NonNull TaskObserver<Result> observer) throws Throwable {
                 observer.onStart();
@@ -101,7 +101,7 @@ public class ExampleInstrumentedTest {
             }
         };
 
-        observable.subscribe(new TaskObserver<Result>() {
+        task.subscribe(new TaskObserver<Result>() {
             @Override
             public void onComplete() {
 
